@@ -7,8 +7,8 @@ This pattern has the advantage of using the point notation,
 which also leads to auto-suggestions by your IDE.
 Example:
 ```
-api.order.getSomething(); // some CUSTOM response
-api.resource.getSomething(); // some respontse
+api.order.getSomething(); // ApiCustomOrderService
+api.resource.getSomething(); // ApiCoreResourceService
 ```
 
 It packages everything nicely in one central library. 
