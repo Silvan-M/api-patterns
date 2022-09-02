@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { ApiService } from '../custom/api.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +9,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'api-patterns';
+
+  constructor(private api: ApiService) {
+    api.orderGetSomething(); // ApiCustomOrderService
+    api.resourceGetSomething(); // ApiCoreResourceService
+  }
 }
