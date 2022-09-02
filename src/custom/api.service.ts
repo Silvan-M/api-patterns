@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ApiService extends ApiCoreService {
-  constructor(public override order: ApiCustomOrderService, public override resource: ApiCoreResourceService) {
+  constructor(order: ApiCustomOrderService, resource: ApiCoreResourceService) {
     super(order, resource);
   }
 }

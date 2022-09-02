@@ -11,7 +11,7 @@ export class AppComponent {
   title = 'api-patterns';
 
   constructor(private api: ApiService) {
-    api.order.getSomething(); // some CUSTOM response
-    api.resource.getSomething(); // some respontse
+    api.order.getSomething(); // ApiCustomOrderService
+    api.resource.getSomething(); // ApiCoreResourceService
   }
 }
