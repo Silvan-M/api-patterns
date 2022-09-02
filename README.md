@@ -1,7 +1,7 @@
 # Wrapper Pattern
 
 See `src/core`, `src/custom` and `src/app/app.component.ts` 
-for implementaion.
+for implementation.
 
 This pattern has the advantage of using the point notation, 
 which also leads to auto-suggestions by your IDE.
