@@ -1,15 +1,16 @@
 # Instance Pattern
 
 See `src/core`, `src/custom` and `src/app/app.component.ts` 
-for implementaion.
+for implementation.
 
 This pattern also has the advantage of using the point notation
 (same usage as in the wrapper-pattern), 
 which also leads to auto-suggestions by your IDE.
+
 Example:
 ```
-api.order.getSomething(); // some CUSTOM response
-api.resource.getSomething(); // some response
+api.order.getSomething(); // ApiCustomOrderService
+api.resource.getSomething(); // ApiCoreResourceService
 ```
 
 It packages everything nicely in one central library. 
