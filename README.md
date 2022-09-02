@@ -1,27 +1,35 @@
-# ApiPatterns
+# Services Pattern
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.1.
+See `src/core`, `src/custom` and `src/app/app.component.ts` 
+for implementation.
 
-## Development server
+This pattern is basically the same pattern as the instance- or 
+wrapper-pattern, but just without a central Api file. It has the
+advantage of being the simplest approach to a multi-file api. Every
+domain has its own service/api. A component then imports only the
+services it needs via injection.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Example:
+```
+constructor(private orderApi: ApiCustomOrderService, private resourceApi: ApiCoreResourceService) {
+    orderApi.getSomething(); // ApiCustomOrderService
+    resourceApi.getSomething(); // ApiCoreResourceService
+}
+```
 
-## Code scaffolding
+The disadvantage of this approach is, that the constructor's 
+parameters in components can get quite big, similarly it 
+doesn't provide a central api and therefore less sophisticated 
+autocomplete. Also, it relies on injecting all the services 
+separately, subsequently it will require to set up another 
+injection every time a new domain is used.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+**Positive:**
+* simplest multi-file solution
+* components only import the necessary apis
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+**Negative:**
+* domains injected separately
+* requires changes in custom when adding domains
+* many constructor parameters in components
+* no central api, less sophisticated autocomplete
