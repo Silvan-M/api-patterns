@@ -1,27 +1,46 @@
-# ApiPatterns
+# Instance Pattern
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.1.
+See `src/core`, `src/custom` and `src/app/app.component.ts` 
+for implementaion.
 
-## Development server
+This pattern also has the advantage of using the point notation
+(same usage as in the wrapper-pattern), 
+which also leads to auto-suggestions by your IDE.
+Example:
+```
+api.order.getSomething(); // some CUSTOM response
+api.resource.getSomething(); // some response
+```
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+It packages everything nicely in one central library. 
+Good thing about this pattern is, unlike the wrapper-pattern
+it does not require injection (only the custom class will 
+be injected).
 
-## Code scaffolding
+This one class will instantiate all domain classes.
+If you want to implement a custom domain you can extend the domain
+from core and override the property in the main custom class.
+The main custom and core class in this pattern acts like an index
+to the domains in existence. 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+It is less complex than the wrapper-pattern because it doesn't 
+require injection and passing classes by parameters. Instead, it 
+requires overriding properties.
 
-## Build
+Also, unlike the wrapper-pattern, it does not require any changes
+in custom if a new domain is added.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+This pattern inherits the features from the wrapper-pattern
+but without its shortcomings. 
 
-## Running unit tests
+**Positive:**
+* point notation
+* auto-suggestions
+* central API
+* no injections necessary
+* the `api.service.ts` files (in core and custom) act as an 
+index
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+**Negative:**
+* more complex than services pattern
+* requires to override properties (question of preference)
